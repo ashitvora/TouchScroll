@@ -564,9 +564,6 @@ TouchScroll.prototype = {
 			if(!isScrolling){
 				this._isScrolling = true;
 				this.showScrollbars();
-				if(!stopStartEvent){
-					this._preventNextClick();
-				}
 			}
 
 			this._scrollBy(scrollOffset);
@@ -662,13 +659,6 @@ TouchScroll.prototype = {
 		if(!this.isAnimating()){
 			this.hideScrollbars();
 		}
-	},
-
-	_preventNextClick: function _preventNextClick(){
-		this.scrollers.container.addEventListener("click", function prevent(event){
-			event.stopPropagation();
-			this.removeEventListener("click", prevent, true);
-		}, true);
 	},
 
 	isAnimating: function isAnimating(){
