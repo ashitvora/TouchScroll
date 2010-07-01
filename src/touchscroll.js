@@ -537,7 +537,6 @@ TouchScroll.prototype = {
 
 	// Handles touch move events on the scroller
 	onTouchMove: function onTouchMove(event){
-    alert("Here");
 		if(!this._doScroll){
 			return;
 		}
