@@ -235,7 +235,7 @@ var TouchScroll = (function(){
 	event listener. On event, the method is called on the registered object.
 */
 TouchScroll.handleEvent = function handleEvent(event){
-	var currentScroller = this.prototype.currentScroller;
+	var currentScroller = TouchScroll.prototype.currentScroller;
 	if(currentScroller){
 		currentScroller.handleEvent(event);
 	}else if(event.type === events.move){ // always cancel move events at this point
@@ -248,9 +248,9 @@ TouchScroll.handleEvent = function handleEvent(event){
 	Event listening takesplace during bubbling, so other scripts can cancel
 	scrolling by simply stopping event propagation.
 */
-document.addEventListener(events.move, TouchScroll, false);
-document.addEventListener(events.end, TouchScroll, false);
-document.addEventListener(events.cancel, TouchScroll, false);
+document.addEventListener(events.move, TouchScroll.handleEvent, false);
+document.addEventListener(events.end, TouchScroll.handleEvent, false);
+document.addEventListener(events.cancel, TouchScroll.handleEvent, false);
 
 /**
 	Constructor for scrollers.
@@ -537,6 +537,7 @@ TouchScroll.prototype = {
 
 	// Handles touch move events on the scroller
 	onTouchMove: function onTouchMove(event){
+    alert("Here");
 		if(!this._doScroll){
 			return;
 		}
